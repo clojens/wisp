@@ -24,12 +24,12 @@
       }
 
       .CodeMirror .CodeMirror-scroll {
-        height: 100%;
+        height: 80%;
       }
     </style>
   </head>
   <body>
-  <a href="https://github.com/gozala/wisp"><img style="z-index: 3; position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+  <!--<a href="https://github.com/gozala/wisp"><img style="z-index: 3; position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>-->
 <script type=text/expamles id=examples>;; # wisp
 
 ; Wisp is homoiconic JS dialect with a clojure syntax, s-expressions and
@@ -102,7 +102,7 @@ My name is wisp!"
 (list->vector)     ;; => listToVector
 
 ;; As a side effect some names can be expressed in a few ways, although
-;; it's considered to be an advantage.
+;; it is considered to be an advantage.
 
 (parse-int x)
 (parseInt x)
@@ -124,7 +124,7 @@ My name is wisp!"
 (+ a b c)      ; => a + b + c
 (- a b)        ; => a - b
 (* a b c)      ; => a * b * c
-(/ a b)        ; => a / b
+(// a b)        ; => a / b
 (mod a b)      ; => a % 2
 
 ;; Comparison forms - Wisp comes with special forms for comparisons
@@ -160,7 +160,7 @@ My name is wisp!"
 ;; Conditionals - Conditional code branching in wisp is expressed via
 ;; if special form. First expression following `if` is a condition,
 ;; if it evaluates to `true` result of the `if` expression is second
-;; expression otherwise it's third expression.
+;; expression otherwise it is third expression.
 (if (< number 10)
   "Digit"
   "Number")

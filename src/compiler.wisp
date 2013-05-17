@@ -45,7 +45,7 @@
 
 
 (defn make-macro
-  "Makes macro"
+  "Makes a macro"
   [pattern body]
   (let [macro-fn `(fn ~pattern ~@body)]
         ;; compile the macro into native code and use the host's native

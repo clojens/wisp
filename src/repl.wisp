@@ -1,3 +1,10 @@
+
+;;
+;; ReadEvalPrint-loop
+;;
+
+;; Dependencies
+;;
 (import repl "repl")
 (import vm "vm")
 (import [transpile] "./engine/node")
@@ -7,6 +14,21 @@
 (import [compile compile-program] "./compiler")
 (import [pr-str] "./ast")
 
+;; Public variables
+;;
+(def evaluate
+     (let [input nil
+           output nil]
+      (fn evaluate [code context file callback]
+        (if (not (identical? input code))
+          (do
+            (set! input (subs code 1 (- (count code) 1)))
+            (set! output (evaluate-code input file context))
+            (callback (:error output) (:value output)))
+          (callback (:error output))))))
+
+;; Public function objects
+;;
 (defn evaluate-code
   "Evaluates some text from REPL input. If multiple forms are
   present, evaluates in sequence until one throws an error
@@ -54,17 +76,6 @@
     (catch error
       {:error error})))
 
-(def evaluate
-     (let [input nil
-           output nil]
-      (fn evaluate [code context file callback]
-        (if (not (identical? input code))
-          (do
-            (set! input (subs code 1 (- (count code) 1)))
-            (set! output (evaluate-code input file context))
-            (callback (:error output) (:value output)))
-          (callback (:error output))))))
-
 (defn start
   "Starts repl"
   []
@@ -77,3 +88,4 @@
         context (.-context session)]
     (set! context.exports {})
     session))
+

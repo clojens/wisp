@@ -1,13 +1,24 @@
+
+;;
+;; Wisp main component
+;;
+
+;; Dependencies
+
+;; Node core modules
 (import fs "fs")
 (import path "path")
 (import [Module] "module")
 
+;; Wisp core modules
 (import [start] "./repl")
 (import [str] "./runtime")
 (import [transpile] "./engine/node")
 (import [compile-program] "./compiler")
 (import [read-from-string] "./reader")
 
+;; Private
+;;
 (defn- exit
   "Takes care of exiting node and printing erros if encounted"
   [error]
@@ -36,6 +47,8 @@
   (.on output :error exit))
 
 
+;; Public
+;;
 (defn main []
   (if (< process.argv.length 3)
     (do
@@ -55,3 +68,4 @@
     ;; Loading module as main one, same way as nodejs does it:
     ;; https://github.com/joyent/node/blob/master/lib/module.js#L489-493
     (Module._load (.resolve path (get process.argv 2)) null true)))
+
